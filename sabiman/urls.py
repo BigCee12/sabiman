@@ -11,5 +11,5 @@ urlpatterns = [
     path('student_search/',search_using_mat_no,name = "search_using_mat_no"),
     path('user_login/',user_login,name='user_login'),
     path('user_logout/', user_logout, name='user_logout'),
-    path('select_profile/',student_or_lecturer,name='student_or_lecture'),
+    path('select_profile/',student_or_lecturer,name='student_or_lecturer'),
 ]
