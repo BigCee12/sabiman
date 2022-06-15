@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Student Info</title>
+</head>
+<body>
+	{% if student_data %}
+			{% for post in student_data %}
+				Your phone Number is: <b>{{ post.own_number }}</b><br>
+				You are in: <b>{{ post.student_level }}</b>
+			{% endfor %}
+	{% endif %}
+	
+	<main role="main" class="container"  >
+    {% if messages %}
+	    {% for message in messages %}
+	      {% if message.tags == "error"%}
+	      <div class="alert alert-danger">
+	        {{ message }}
+	      </div>
+	      {% else %}
+	      <div class="alert alert-success">
+	        {{ message }}
+	      </div>
+	      {% endif %}
+	    {% endfor %}
+    {% endif %}
+	</main>
+	<form action="{% url 'search_using_mat_no' %}" method="POST" name="mat_no">
+		{% csrf_token %}
+		<h2>{{ form.as_p }}</h2>
+		{% if form %}
+		<button type="submit">Submit</button>
+		{% endif %}
+	</form>
+	{% if form %}
+		{% else %}
+		<a href="{% url 'index' %}"><button>Go to Home</button></a>
+		{% endif %}
+</body>
+</html>

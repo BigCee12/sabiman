@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Unicontacts</title>
+</head>
+<body>
+	<h2><a href="/" >Welcome to Unicontacts</a></h2>
+
+<main role="main" class="container"  >
+	  {% if messages %}
+	    {% for message in messages %}
+	      {% if message.tags == "error"%}
+	      <div class="alert alert-danger">
+	        {{ message }}
+	      </div>
+	      {% else %}
+	      <div class="alert alert-success">
+	        {{ message }}
+	      </div>
+	      {% endif %}
+	    {% endfor %}
+	  {% endif %}
+	</main>
+
+{% block content %}
+{% endblock %}
+
+
+{% if user.is_authenticated %}
+	<a href="{% url 'user_logout' %}" ><button>Logout</button></a>
+	<a href="{% url 'search_using_mat_no' %}"><button>Search Using Matriculation Number</button></a>
+	
+	{% else %}
+	<a href="{% url 'user_reg' %}" ><button>Register</button></a>
+	<a href="{% url 'user_login' %}"><button>Login</button></a>
+	{%endif %}
+</body>
+</html>

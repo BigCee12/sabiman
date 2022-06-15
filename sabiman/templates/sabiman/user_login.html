@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Unicontacts</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+<h2><a href="/" >Welcome to Unicontacts</a></h2>
+<form action="{% url 'user_login' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<main role="main" class="container"  >
+  {% if messages %}
+    {% for message in messages %}
+		{% if message.tags %}
+		{% endif %}
+        {{ message }}
+    {% endfor %}
+  {% endif %}
+	</main>
+	<button type="submit">Login</button>
+</form>
+<br>
+<h2>Don't have an account yet? <a href="{% url 'user_reg' %}">Register</a></h2>
+</body>
+</html>
